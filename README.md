@@ -20,20 +20,26 @@ dotfiles/
 
 1. **Allow symlinks.** Turn on Developer Mode (*Settings > System > For developers*), or run PowerShell as Administrator.
 
-2. **Clone the repo:**
+2. **Go to the folder that will contain the repo** (cloning creates a `dotfiles` folder inside it):
 
    ```powershell
-   git clone https://github.com/wyatthoho/dotfiles.git $HOME\dotfiles
+   cd <parent-folder>
    ```
 
-3. **Run the install script:**
+3. **Clone the repo:**
 
    ```powershell
-   cd $HOME\dotfiles
+   git clone https://github.com/wyatthoho/dotfiles.git
+   ```
+
+4. **Run the install script:**
+
+   ```powershell
+   cd dotfiles
    powershell -ExecutionPolicy Bypass -File .\install.ps1
    ```
 
-4. **Check the link:**
+5. **Check the link:**
 
    ```powershell
    Get-Item $HOME\.claude\CLAUDE.md | Select-Object LinkType, Target
@@ -41,19 +47,25 @@ dotfiles/
 
 ## Setup (Linux)
 
-1. **Clone the repo:**
+1. **Go to the folder that will contain the repo** (cloning creates a `dotfiles` folder inside it):
 
    ```bash
-   git clone https://github.com/wyatthoho/dotfiles.git ~/dotfiles
+   cd <parent-folder>
    ```
 
-2. **Run the install script:**
+2. **Clone the repo:**
 
    ```bash
-   bash ~/dotfiles/install.sh
+   git clone https://github.com/wyatthoho/dotfiles.git
    ```
 
-3. **Check the link:**
+3. **Run the install script:**
+
+   ```bash
+   bash dotfiles/install.sh
+   ```
+
+4. **Check the link:**
 
    ```bash
    ls -l ~/.claude/CLAUDE.md
