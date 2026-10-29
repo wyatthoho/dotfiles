@@ -73,6 +73,14 @@ dotfiles/
 
 On both systems, if a real file already exists at a target path, the script renames it to a timestamped `.bak` file before linking. Running the script again is safe.
 
+## Manual setup (Linux)
+
+Skip the script and create the symlink wherever you want.
+
+```bash
+ln -s <parent-folder>/dotfiles/claude/CLAUDE.md <target-folder>/CLAUDE.md
+```
+
 ## Updating
 
 Edit files here in the repo, not at the linked locations. They are the same file either way, but this keeps the habit clear.
