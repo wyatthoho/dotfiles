@@ -9,12 +9,12 @@ dotfiles/
 ├── install.ps1      # Windows setup script: creates the symlinks
 ├── install.sh       # Linux setup script: creates the same symlinks
 └── claude/
-    └── CLAUDE.md    # Global instructions for Claude Code
+    └── CLAUDE.md    # Global instructions for Claude Code, linked to ~/.claude/CLAUDE.md
 ```
 
-| File in this repo  | Linked to                   |
-| ------------------ | --------------------------- |
-| `claude/CLAUDE.md` | `~/.claude/CLAUDE.md`       |
+## What the install scripts do
+
+Both scripts create the same symlinks. If a real file already exists at a target path, the script renames it to a timestamped `.bak` file before linking. Running a script again is safe.
 
 ## Setup (Windows)
 
@@ -71,29 +71,39 @@ dotfiles/
    ls -l ~/.claude/CLAUDE.md
    ```
 
-On both systems, if a real file already exists at a target path, the script renames it to a timestamped `.bak` file before linking. Running the script again is safe.
+## Manual setup (Windows)
+
+Use this instead of the script when you want the file somewhere other than the default location. It needs the same symlink permission as the script (see step 1 of the Windows setup).
+
+```powershell
+New-Item -ItemType SymbolicLink -Path <target-folder>\CLAUDE.md -Target <parent-folder>\dotfiles\claude\CLAUDE.md
+```
+
+This fails if a file already exists at the path. Move or delete it first; unlike the script, nothing is backed up for you.
 
 ## Manual setup (Linux)
 
-Skip the script and create the symlink wherever you want.
+Use this instead of the script when you want the file somewhere other than the default location.
 
 ```bash
 ln -s <parent-folder>/dotfiles/claude/CLAUDE.md <target-folder>/CLAUDE.md
 ```
 
+This fails if a file already exists at the path. Move or delete it first; unlike the script, nothing is backed up for you.
+
 ## Updating
 
-Edit files here in the repo, not at the linked locations. They are the same file either way, but this keeps the habit clear.
+Edit files in the repo, not at the linked locations. Some editors replace a file when saving, which can silently break the symlink.
 
-```powershell
+```bash
 git add -A
-git commit -m "Update CLAUDE.md"
+git commit -m "docs: update CLAUDE.md"
 git push
 ```
 
 On other machines, pull to get the changes:
 
-```powershell
+```bash
 git pull
 ```
 
