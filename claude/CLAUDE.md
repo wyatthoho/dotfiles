@@ -1,6 +1,6 @@
 # Coding Style
 
-Goal: a first-time reader (me in six months, or another model) can follow the code top to bottom and trust what each name means. When a rule doesn't fit, follow the goal and say so. In an existing codebase, follow its code conventions; these rules fill the gaps.
+Goal: a first-time reader (me in six months, or another model) can follow the code top to bottom and trust what each name means. These are working preferences, not hard requirements; use judgment. When a rule doesn't fit, follow the goal and say so. In an existing codebase, follow its code conventions; these rules fill the gaps.
 
 ## Principles
 - Build for the problem in front of you. No speculative options or layers; extract shared code only on the third repeat, or when two copies are clearly the same thing.
