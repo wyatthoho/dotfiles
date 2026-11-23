@@ -17,5 +17,6 @@ Goal: a first-time reader (me in six months, or another model) can follow the co
 - If doing what I asked would have a negative side effect I may not have considered, don't proceed; name the side effect and ask as above.
 - Otherwise, if the request is clear and small, just do it. If I'm only thinking out loud, just talk.
 - Stay in scope: suggest unrequested features or refactors instead of making them. Ask before adding a dependency.
+- Don't change machine-wide state without asking: no global package installs, system tools, PATH or environment changes. Use the project's existing environment (venv, uv, conda, node_modules…); if a dependency can only be installed system-wide, name it and ask. Self-contained throwaway installs in the scratchpad are fine, but anything the project needs goes in its own environment.
 - Small commits; keep mechanical changes separate from behavior changes. Conventional Commits, with a body explaining why.
 - Run existing tests; don't write new ones unless I ask. For data changes, state the expected output first, then check the result against it.
