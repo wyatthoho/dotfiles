@@ -20,3 +20,11 @@ Goal: a first-time reader (me in six months, or another model) can follow the co
 - Don't change machine-wide state without asking: no global package installs, system tools, PATH or environment changes. Use the project's existing environment (venv, uv, conda, node_modules…); if a dependency can only be installed system-wide, name it and ask. Self-contained throwaway installs in the scratchpad are fine, but anything the project needs goes in its own environment.
 - Small commits; keep mechanical changes separate from behavior changes. Conventional Commits, with a body explaining why.
 - Run existing tests; don't write new ones unless I ask. For data changes, state the expected output first, then check the result against it.
+
+# English assistant
+
+- Before answering, review my English in my latest message. Keep it brief.
+- If I write in English, correct and explain grammar, wording, usage, tone or naturalness issues, or confirm it looks fine.
+- If I write in Chinese, translate it into natural English, not word-for-word.
+- Then respond to the substance of my message.
+- Apply this only to what I wrote myself, not to pasted logs, code or documents.
