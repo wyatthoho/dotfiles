@@ -6,15 +6,9 @@ My personal configuration files, kept in one place and linked into each machine 
 
 ```
 dotfiles/
-├── install.ps1      # Windows setup script: creates the symlinks
-├── install.sh       # Linux setup script: creates the same symlinks
 └── claude/
     └── CLAUDE.md    # Global instructions for Claude Code, linked to ~/.claude/CLAUDE.md
 ```
-
-## What the install scripts do
-
-Both scripts create the same symlinks. If a real file already exists at a target path, the script renames it to a timestamped `.bak` file before linking. Running a script again is safe.
 
 ## Setup (Windows)
 
@@ -32,17 +26,18 @@ Both scripts create the same symlinks. If a real file already exists at a target
    git clone https://github.com/wyatthoho/dotfiles.git
    ```
 
-4. **Run the install script:**
+4. **Link the file.** Use any target folder; for Claude Code the default is `$HOME\.claude`:
 
    ```powershell
-   cd dotfiles
-   powershell -ExecutionPolicy Bypass -File .\install.ps1
+   New-Item -ItemType SymbolicLink -Path <target-folder>\CLAUDE.md -Target <parent-folder>\dotfiles\claude\CLAUDE.md
    ```
+
+   This fails if a file already exists at the path. Move or delete it first.
 
 5. **Check the link:**
 
    ```powershell
-   Get-Item $HOME\.claude\CLAUDE.md | Select-Object LinkType, Target
+   Get-Item <target-folder>\CLAUDE.md | Select-Object LinkType, Target
    ```
 
 ## Setup (Linux)
@@ -59,37 +54,19 @@ Both scripts create the same symlinks. If a real file already exists at a target
    git clone https://github.com/wyatthoho/dotfiles.git
    ```
 
-3. **Run the install script:**
+3. **Link the file.** Use any target folder; for Claude Code the default is `~/.claude`:
 
    ```bash
-   bash dotfiles/install.sh
+   ln -s <parent-folder>/dotfiles/claude/CLAUDE.md <target-folder>/CLAUDE.md
    ```
+
+   This fails if a file already exists at the path. Move or delete it first.
 
 4. **Check the link:**
 
    ```bash
-   ls -l ~/.claude/CLAUDE.md
+   ls -l <target-folder>/CLAUDE.md
    ```
-
-## Manual setup (Windows)
-
-Use this instead of the script when you want the file somewhere other than the default location. It needs the same symlink permission as the script (see step 1 of the Windows setup).
-
-```powershell
-New-Item -ItemType SymbolicLink -Path <target-folder>\CLAUDE.md -Target <parent-folder>\dotfiles\claude\CLAUDE.md
-```
-
-This fails if a file already exists at the path. Move or delete it first; unlike the script, nothing is backed up for you.
-
-## Manual setup (Linux)
-
-Use this instead of the script when you want the file somewhere other than the default location.
-
-```bash
-ln -s <parent-folder>/dotfiles/claude/CLAUDE.md <target-folder>/CLAUDE.md
-```
-
-This fails if a file already exists at the path. Move or delete it first; unlike the script, nothing is backed up for you.
 
 ## Updating
 
@@ -110,19 +87,7 @@ git pull
 ## Adding a new file
 
 1. Put the file in the repo, grouped by tool (for example, `claude/settings.json`).
-2. Add an entry to `$links` in `install.ps1`:
-
-   ```powershell
-   @{ Source = Join-Path $repo 'claude\settings.json'; Target = Join-Path $HOME '.claude\settings.json' }
-   ```
-
-3. Add the same entry to `links` in `install.sh`:
-
-   ```bash
-   "$repo/claude/settings.json|$HOME/.claude/settings.json"
-   ```
-
-4. Run the install script again (`install.ps1` on Windows, `install.sh` on Linux).
+2. Link it into place with the command from step 4 (Windows) or step 3 (Linux) of the setup.
 
 ## Note
 
