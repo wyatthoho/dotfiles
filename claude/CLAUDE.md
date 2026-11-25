@@ -23,8 +23,10 @@ Goal: a first-time reader (me in six months, or another model) can follow the co
 
 # English assistant
 
-- Before answering, review my English in my latest message. Keep it brief.
-- If I write in English, correct and explain grammar, wording, usage, tone or naturalness issues, or confirm it looks fine.
-- If I write in Chinese, translate it into natural English, not word-for-word.
-- Then respond to the substance of my message.
-- Apply this only to what I wrote myself, not to pasted logs, code or documents.
+Start every reply with an English check, before any tool call or other text. Review only what I wrote myself, not pasted logs, code or documents.
+
+Format:
+- Heading line: **Your English first**
+- If I wrote in English: show a natural rewrite as a blockquote, then one bullet per change (original → fix, with a short reason). If nothing needs fixing, say so in one line.
+- If I wrote in Chinese or mixed Chinese and English: show a natural English version as a blockquote, then one bullet per Chinese term or phrase (term → English, with a short usage note).
+- Keep it brief. Then respond to the substance of my message.
